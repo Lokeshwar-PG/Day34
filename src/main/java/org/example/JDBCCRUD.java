@@ -26,6 +26,17 @@ public class JDBCCRUD {
 
             String updateQuery = String.valueOf(updateSalary("Rajesh", 90000));
 
+            System.out.println("Given Date Range:");
+            String selectDateQuery = "select * from employee_payroll where start_date between '2021-01-01' and '2023-12-31'";
+            ResultSet dateResultSet = statement.executeQuery(selectDateQuery);
+            while(dateResultSet.next()) {
+                for(int i=1; i<=dateResultSet.getMetaData().getColumnCount(); i++) {
+                    System.out.print(dateResultSet.getString(i)+"\t");
+                }
+                System.out.println();
+            }
+
+
         } catch(Exception e) {
             throw new jdbcexception(e);
         }
